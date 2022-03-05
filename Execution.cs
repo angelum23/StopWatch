@@ -8,10 +8,17 @@
 
             for (int s = 0; s <= dtoTempo.SegundosFinal; s++)
             {
-                Console.Clear();
-                Console.WriteLine(FormataTempo(s));
-                Thread.Sleep(TimeSpan.FromSeconds(1));
+                PrintaRelogio(s);
             }
+        }
+
+        private static void PrintaRelogio(int s)
+        {
+            Console.Clear();
+            Console.WriteLine("  _________");
+            Console.WriteLine($"  | {FormataTempo(s)} |");
+            Console.WriteLine("  ¯¯¯¯¯¯¯¯¯");
+            Thread.Sleep(TimeSpan.FromSeconds(1));
         }
 
         public static string FormataTempo(int s)

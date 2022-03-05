@@ -4,14 +4,27 @@ namespace Cronometro
 {
     public class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Start();
+            Start(args);
+            ReStart(args);
         }
 
-        private static void Start()
+        private static void ReStart(string[] args)
         {
-            Execution.ExecutaCronometro(Menu.ExibeMenu());
+            Menu.ExibeMenuRestart(args);
+        }
+
+        private static void Start(string[] args)
+        {
+            try
+            {
+               Execution.ExecutaCronometro(Menu.ExibeMenu());
+            }
+            catch (Exception)
+            {
+                Main(args);
+            }
         }
     }
 }

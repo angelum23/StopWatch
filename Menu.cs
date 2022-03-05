@@ -1,4 +1,6 @@
-﻿namespace Cronometro
+﻿using Cronometro;
+
+namespace Cronometro
 {
     public class DtoTempo
     {
@@ -15,16 +17,30 @@
     {
         public static DtoTempo ExibeMenu()
         {
-            try
+            Console.Clear();
+            Console.WriteLine("Digite quanto tempo você quer cronometrar. Ex: 00:25");
+            string stringTempo = Console.ReadLine();
+            return ConverteTempo(stringTempo);
+        }
+
+        public static void ExibeMenuRestart(string[] args)
+        {
+            Console.WriteLine("Seu tempo acabou, deseja continuar?\nS - Sim\nN - Não");
+            var simNao = Console.ReadLine().ToLower();
+
+            switch (simNao)
             {
-                Console.Clear();
-                Console.WriteLine("Digite quanto tempo você quer cronometrar. Ex: 00:25");
-                string stringTempo = Console.ReadLine();
-                return ConverteTempo(stringTempo);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Valor inválido");
+                case "s":
+                    Program.Main(args);
+                    break;
+                case "n":
+                    System.Environment.Exit(0);
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Opção inválida!");
+                    ExibeMenuRestart(args);
+                    break;
             }
         }
 
