@@ -4,6 +4,7 @@
     {
         public int Minutos { get; set; }
         public int Segundos { get; set; }
+        public int SegundosFinal { get; set; }
     }
     public class DtoTempoString
     {

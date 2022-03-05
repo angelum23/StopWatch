@@ -4,20 +4,19 @@
     {
         public static void ExecutaCronometro(DtoTempo dtoTempo)
         {
-            for (int m = 0; m <= dtoTempo.Minutos; m++)
+            dtoTempo.SegundosFinal = dtoTempo.Segundos + (dtoTempo.Minutos * 60);
+
+            for (int s = 0; s <= dtoTempo.SegundosFinal; s++)
             {
-                for (int s = 0; s <= dtoTempo.Segundos; s++)
-                {
-                    Console.Clear();
-                    Console.WriteLine(FormataTempo(m, s));
-                    Thread.Sleep(50);
-                }
+                Console.Clear();
+                Console.WriteLine(FormataTempo(s));
+                Thread.Sleep(TimeSpan.FromSeconds(1));
             }
         }
 
-        public static string FormataTempo(int m, int s)
+        public static string FormataTempo(int s)
         {
-            var tempo = ConverteTempo(m,s);
+            var tempo = ConverteTempo(s);
 
             DtoTempoString dtoTempoString = StringaTempo(tempo);
 
@@ -45,8 +44,9 @@
             };
         }
 
-        private static DtoTempo ConverteTempo(int m, int s)
+        private static DtoTempo ConverteTempo(int s)
         {
+            var m = 0;
             do
             {
                 if (s > 59)
